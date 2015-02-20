@@ -482,10 +482,14 @@ class ApiBehavior extends ModelBehavior {
 		
 		$map = array();
 		foreach ($attributes as $attribute => $settings) {
-			if (empty($settings['field'])) {
-				$settings['field'] = $attribute;
+			if (is_int($attribute) && is_string($settings)) {
+				$map[$settings] = $settings;
+			} else {
+				if (empty($settings['field'])) {
+					$settings['field'] = $attribute;
+				}
+				$map[$settings['field']] = $attribute;
 			}
-			$map[$settings['field']] = $attribute;
 		}
 		
 		return $map;
