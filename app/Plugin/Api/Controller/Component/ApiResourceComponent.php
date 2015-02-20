@@ -2351,7 +2351,8 @@ class ApiResourceComponent extends Component {
 		
 		$field_prefixes = array();
 		foreach ($field_map as $field => $attribute) {
-			$field_prefixes[] = array_shift(explode('.', $field));
+			$tokens = explode('.', $field);
+			$field_prefixes[] = array_shift($tokens);
 		}
 		
 		$filtered = array();
