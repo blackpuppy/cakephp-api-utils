@@ -139,7 +139,7 @@ class VirtualHabtmBehavior extends ModelBehavior {
 	 * @param	boolean		$created
 	 * @return	boolean
 	 */
-	public function afterSave(Model $Model, $created) {
+	public function afterSave(Model $Model, $created, $options = array()) {
 		
 		if (empty($Model->data[$Model->alias])) {
 			return true;
