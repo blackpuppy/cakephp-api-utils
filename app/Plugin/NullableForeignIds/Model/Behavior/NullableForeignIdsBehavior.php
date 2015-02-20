@@ -94,7 +94,7 @@ class NullableForeignIdsBehavior extends ModelBehavior {
 	 * @param	array $options
 	 * @return	boolean
 	 */
-	public function beforeSave(Model $Model) {		
+	public function beforeSave(Model $Model, $options = array()) {		
 		$this->nullify($Model);
 		return true;
 	}
@@ -105,7 +105,7 @@ class NullableForeignIdsBehavior extends ModelBehavior {
 	 * @param	Model $Model
 	 * @return	boolean
 	 */
-	public function beforeValidate(Model $Model) {
+	public function beforeValidate(Model $Model, $options = array()) {
 		$this->nullify($Model);
 		return true;
 	}
