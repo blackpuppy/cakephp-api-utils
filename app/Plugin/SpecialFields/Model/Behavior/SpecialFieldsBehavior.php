@@ -157,7 +157,7 @@ class SpecialFieldsBehavior extends ModelBehavior {
 	 * @param   array $options
 	 * @return  boolean
 	 */
-	public function beforeSave(Model $Model, $options) {
+	public function beforeSave(Model $Model, $options = array()) {
 		
 		foreach (array('json', 'serialized') as $type) {
 			
