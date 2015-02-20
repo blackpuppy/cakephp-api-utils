@@ -2,8 +2,6 @@
 /**
  * ViewTest file
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -184,11 +182,11 @@ class TestView extends View {
 }
 
 /**
- * TestAfterHelper class
+ * TestBeforeAfterHelper class
  *
  * @package       Cake.Test.Case.View
  */
-class TestAfterHelper extends Helper {
+class TestBeforeAfterHelper extends Helper {
 
 /**
  * property property
@@ -708,17 +706,21 @@ class ViewTest extends CakeTestCase {
 
 /**
  * Test that elements can have callbacks
+ *
+ * @return void
  */
 	public function testElementCallbacks() {
-		$this->getMock('Helper', array(), array($this->View), 'ElementCallbackMockHtmlHelper');
+		$Helper = $this->getMock('Helper', array(), array($this->View), 'ElementCallbackMockHtmlHelper');
 		$this->View->helpers = array('ElementCallbackMockHtml');
 		$this->View->loadHelpers();
+
+		$this->View->Helpers->set('ElementCallbackMockHtml', $Helper);
+		$this->View->ElementCallbackMockHtml = $Helper;
 
 		$this->View->ElementCallbackMockHtml->expects($this->at(0))->method('beforeRender');
 		$this->View->ElementCallbackMockHtml->expects($this->at(1))->method('afterRender');
 
 		$this->View->element('test_element', array(), array('callbacks' => true));
-		$this->mockObjects[] = $this->View->ElementCallbackMockHtml;
 	}
 
 /**
@@ -949,10 +951,10 @@ class ViewTest extends CakeTestCase {
  * @return void
  */
 	public function testBeforeLayout() {
-		$this->PostsController->helpers = array('Session', 'TestAfter', 'Html');
+		$this->PostsController->helpers = array('Session', 'TestBeforeAfter', 'Html');
 		$View = new View($this->PostsController);
 		$View->render('index');
-		$this->assertEquals('Valuation', $View->Helpers->TestAfter->property);
+		$this->assertEquals('Valuation', $View->Helpers->TestBeforeAfter->property);
 	}
 
 /**
@@ -961,7 +963,7 @@ class ViewTest extends CakeTestCase {
  * @return void
  */
 	public function testAfterLayout() {
-		$this->PostsController->helpers = array('Session', 'TestAfter', 'Html');
+		$this->PostsController->helpers = array('Session', 'TestBeforeAfter', 'Html');
 		$this->PostsController->set('variable', 'values');
 
 		$View = new View($this->PostsController);
@@ -1026,7 +1028,7 @@ class ViewTest extends CakeTestCase {
 		$this->assertRegExp("/<title>yo what up<\/title>/", $result);
 		$this->assertRegExp("/<p><a href=\"flash\">yo what up<\/a><\/p>/", $result);
 
-		$this->assertTrue($View->render(false, 'flash'));
+		$this->assertNull($View->render(false, 'flash'));
 
 		$this->PostsController->helpers = array('Session', 'Cache', 'Html');
 		$this->PostsController->constructClasses();
@@ -1356,7 +1358,7 @@ class ViewTest extends CakeTestCase {
 
 /**
  * Test setting a block's content to an object with __toString magic method
- * 
+ *
  * @return void
  */
 	public function testBlockSetObjectWithToString() {
@@ -1388,7 +1390,7 @@ class ViewTest extends CakeTestCase {
 	public function testBlockSetDecimal() {
 		$this->View->assign('testWithDecimal', 1.23456789);
 		$result = $this->View->fetch('testWithDecimal');
-		$this->assertEqual('1.23456789', $result);
+		$this->assertEquals('1.23456789', $result);
 	}
 
 /**
@@ -1419,7 +1421,6 @@ class ViewTest extends CakeTestCase {
 		$this->assertSame('Block' . $value, $result);
 	}
 
-
 /**
  * Test appending an object without __toString magic method to a block with append.
  *
@@ -1437,7 +1438,7 @@ class ViewTest extends CakeTestCase {
 
 /**
  * Test prepending to a block with prepend.
- * 
+ *
  * @dataProvider blockValueProvider
  * @return void
  */
@@ -1448,6 +1449,7 @@ class ViewTest extends CakeTestCase {
 		$result = $this->View->fetch('test');
 		$this->assertEquals($value . 'Block', $result);
 	}
+
 /**
  * Test prepending an object without __toString magic method to a block with prepend.
  *
@@ -1513,6 +1515,20 @@ class ViewTest extends CakeTestCase {
 
 		$this->assertEquals('In first In first', $this->View->fetch('first'));
 		$this->assertEquals('In second', $this->View->fetch('second'));
+	}
+
+/**
+ * Test that starting the same block twice throws an exception
+ *
+ * @expectedException CakeException
+ * @return void
+ */
+	public function testStartBlocksTwice() {
+		$this->View->start('first');
+		echo 'In first ';
+		$this->View->start('second');
+		echo 'In second';
+		$this->View->start('first');
 	}
 
 /**

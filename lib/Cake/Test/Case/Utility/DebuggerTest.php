@@ -274,6 +274,8 @@ class DebuggerTest extends CakeTestCase {
 
 /**
  * Test method for testing addFormat with callbacks.
+ *
+ * @return void
  */
 	public function customFormat($error, $strings) {
 		return $error['error'] . ': I eated an error ' . $error['file'];
@@ -451,6 +453,7 @@ TEXT;
 		if (file_exists(LOGS . 'debug.log')) {
 			unlink(LOGS . 'debug.log');
 		}
+		CakeLog::config('file', array('engine' => 'File', 'path' => TMP . 'logs' . DS));
 
 		Debugger::log('cool');
 		$result = file_get_contents(LOGS . 'debug.log');
@@ -490,8 +493,8 @@ TEXT;
 		Debugger::dump($var);
 		$result = ob_get_clean();
 
-		$open = php_sapi_name() == 'cli' ? "\n" : '<pre>';
-		$close = php_sapi_name() == 'cli' ? "\n" : '</pre>';
+		$open = php_sapi_name() === 'cli' ? "\n" : '<pre>';
+		$close = php_sapi_name() === 'cli' ? "\n" : '</pre>';
 		$expected = <<<TEXT
 {$open}array(
 	'People' => array(
