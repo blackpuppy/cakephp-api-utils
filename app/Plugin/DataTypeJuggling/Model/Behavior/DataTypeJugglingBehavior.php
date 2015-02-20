@@ -33,7 +33,7 @@ class DataTypeJugglingBehavior extends ModelBehavior {
 	 * @param	Model $Model
 	 * @return	boolean
 	 */
-	public function beforeValidate(Model $Model) {
+	public function beforeValidate(Model $Model, $options = array()) {
 		
 		if (empty($Model->data[$Model->alias])) {
 			return true;
@@ -63,7 +63,7 @@ class DataTypeJugglingBehavior extends ModelBehavior {
 	 * @param	Model $Model
 	 * @return	boolean
 	 */
-	public function beforeSave(Model $Model) {
+	public function beforeSave(Model $Model, $options = array()) {
 		
 		if (empty($Model->data[$Model->alias])) {
 			return true;
