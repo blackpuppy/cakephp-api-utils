@@ -273,7 +273,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -335,7 +336,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -394,7 +396,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -462,7 +465,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -557,7 +561,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -622,7 +627,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -685,7 +691,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -754,7 +761,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -855,7 +863,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -920,7 +929,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -983,7 +993,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -1052,7 +1063,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
@@ -1177,7 +1189,8 @@ class ApiPermissionsComponentTest extends ControllerTestCase {
 			->expects($this->any())
 			->method('user')
 			->will($this->returnCallback(function(){
-				$arg = array_shift(func_get_args());
+				$args = func_get_args();
+				$arg = array_shift($args);
 				switch ($arg) {
 					case 'id':
 						$return = 1;
