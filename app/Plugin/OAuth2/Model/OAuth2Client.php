@@ -178,7 +178,7 @@ class OAuth2Client extends OAuth2AppModel {
 	 * @param	boolean	$created
 	 * @return	boolean
 	 */
-	public function afterSave($created = false) {
+	public function afterSave($created = false, $options = array()) {
 		
 		$return = $this->__parentAfterSave($created);
 		
