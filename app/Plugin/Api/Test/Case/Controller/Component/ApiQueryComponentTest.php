@@ -1515,8 +1515,6 @@ class ApiQueryComponentTest extends CakeTestCase {
 		
 		$value = uniqid();
 		
-		$this->TestController->AppControllerTest = null;
-		
 		$results = $this->Query
 			->onModel('OtherModel')
 			->onField($field)

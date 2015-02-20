@@ -780,10 +780,11 @@ class ApiQueryComponent extends Component {
 			!empty($this->Controller->request->params['id']) &&
 			!empty($this->Controller->request->query['id'])
 		) {
-			$this->Controller->request->query['id'] = array_shift(array_intersect(
+			$ids = array_intersect(
 				explode('|', $this->Controller->request->query['id']),
 				array($this->Controller->request->params['id'])
-			));
+			);
+			$this->Controller->request->query['id'] = array_shift($ids);
 		}
 		
 		return $this;
