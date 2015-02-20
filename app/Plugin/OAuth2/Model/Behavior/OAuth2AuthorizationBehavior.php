@@ -76,7 +76,7 @@ class OAuth2AuthorizationBehavior extends ModelBehavior {
 	 * @param	boolean	$created
 	 * @return	boolean
 	 */
-	public function afterSave(Model $Model, $created = false) {
+	public function afterSave(Model $Model, $created = false, $options = array()) {
 		
 		if (
 			empty($Model->data[$Model->alias][$this->_settings[$Model->alias]['fields']['client_id']]) ||
